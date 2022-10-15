@@ -1,5 +1,7 @@
 package com.day15.BST;
 
+import java.util.Scanner;
+
 public class BinarySearchTree {
 	
 	class Node
@@ -57,6 +59,26 @@ public class BinarySearchTree {
 		else
 			return (size(root.left)+1+size(root.right));
 	}
+	
+	public boolean search(Node root, int input)
+	{
+		if(root == null)
+		{
+			return false;
+		}
+		
+		if(root.data == input)
+		{
+			return true;
+		}
+		
+		boolean result1 = search(root.left,input);
+		if(result1 == true) return true;
+		
+		boolean result2 = search(root.right,input);
+		return result2;
+		
+	}
 	public static void main(String[] args) {
 		BinarySearchTree tree = new BinarySearchTree();
 		tree.insert(56);
@@ -71,7 +93,7 @@ public class BinarySearchTree {
 		tree.insert(95);
 		tree.insert(65);
 		tree.insert(63);
-		//tree.insert(67);
+		tree.insert(67);
 		tree.inOrder();
 		System.out.println();
 		int size = tree.size(tree.root);
@@ -79,6 +101,14 @@ public class BinarySearchTree {
 			System.out.println("All elements are added");
 		else
 			System.out.println("Missing some elements");
+		
+		
+		if(tree.search(tree.root, 63)!= false )
+		{
+			System.out.println("63 is present");
+		}
+		else
+			System.out.println("63 is not  present");
 		
 		
 	}
